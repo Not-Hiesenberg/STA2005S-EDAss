@@ -1,0 +1,15 @@
+---
+title: "A great title we need to come up with"
+author: "Dhiya Tathiah and Keeran Moodley"
+format:
+  html:
+    grid:
+      margin-width: 350px
+    style: darkly
+reference-location: margin
+citation-location: margin
+---
+
+```{r}
+    print("hello world")
+```
