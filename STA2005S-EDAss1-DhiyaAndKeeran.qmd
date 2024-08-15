@@ -13,3 +13,5 @@ citation-location: margin
 ```{r}
     print("hello world")
 ```
+
+Now we can do all sorts of fancy things in here and not conflict with each others work.
