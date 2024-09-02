@@ -10,20 +10,41 @@ reference-location: margin
 citation-location: margin
 ---
 
-```{r}
-    print("hello world")
-```
+# Introduction 
+Dhiya
 
-### Introduction 
-### Motivation
-### Objectives
-### Design and Procedure
-### Pilot study and results
-### Model and outline of analysis
-### The actual experiment and data
-### ANOVA
-### Contrasts
+# Motivation
+Dhiya
+
+# Objectives
+Dhiya
+
+# Design and Procedure
+Keeran
+
+# Pilot study and results
+together
+
+# Model and outline of analysis
+Dhiya justification of assumption
+give later 
+
+# The actual experiment and data
+randmisation and generation keeran
+clean and set up dfs
+
+# ANOVA
+dhiya DO from here down on friday 12pm M202
+
+# Contrasts
 bonferrini corrections
-### Interpretation
-### Conclusion
+keeran
+
+# Interpretation
+both
+
+# Conclusion
+both
+
+# Appendix 
 
