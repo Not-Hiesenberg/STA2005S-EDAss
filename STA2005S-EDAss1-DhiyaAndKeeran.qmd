@@ -63,14 +63,21 @@ pilotBurn$treat<- factor(pilotBurn$treat, levels=c("A","B","C"), labels=c("No oi
 ```
 
 ```{r}
+#| output: true
 #Descriptive stats
 library(pastecs)
 descstats<-by(pilotBurn$time, pilotBurn$block, stat.desc)
-summaryData<- data.frame(row.names = c("median","mean","stddev","var"))
+summaryData<- data.frame()
 for (block in descstats){
   block<-unname(block)
-  summaryData<-rbind(summaryData, data.frame(c(block[8],block[9],block[12],block[13])))
+  summaryData<-rbind(summaryData, data.frame(median=block[8],mean=block[9],var=block[12],stddev=block[13]))
 }
+row.names(summaryData)<-c("Hem", "Malarani" , "Tulasi")
+library(dplyr)
+library(kableExtra)
+kbl(summaryData,digits=2, format="latex",booktabs=TRUE)|>
+kable_styling(position = "center")
+
 ```
 \todo{analyse this shit}
 # Model and outline of analysis
