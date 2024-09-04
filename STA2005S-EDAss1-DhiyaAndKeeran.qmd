@@ -1,15 +1,19 @@
 ---
-title: "A great title we need to come up with"
+title: "To Oil or Not to Oil: An Investigation into Agrabathi and Old Wive's Tales"
 author: "Dhiya Tathiah and Keeran Moodley"
 format:
-  html:
-    grid:
-      margin-width: 350px
-    theme: darkly
-reference-location: margin
-citation-location: margin
+  pdf:
+    include-in-header:
+      - file: preamble.tex
+    toc: true
+    number-sections: true
+    colorlinks: true
+execute: 
+  echo: false
+  eval: true
+  output: false
 ---
-
+\newpage
 # Introduction 
 Dhiya
 
@@ -20,11 +24,55 @@ Dhiya
 Dhiya
 
 # Design and Procedure
-Keeran
+This experiment will employ a randomised block design with a single factor - application of oil - of three levels, viz., control (no oil), coconut oil, and castor oil. The experiment will block for heterogeneity of experimental units arising from the use of different brands of Agrabathi viz., Hem, Malarani and Tulasi. The factor levels have been selected as they are oils commonly used in Indian households across the world and are the de facto choices during day to day use. The brands of Agrabathi from which the experimental units are drawn from represent easily found and widely exported brands. 
 
-# Pilot study and results
-together
+A pilot study will be conducted to assess the viability of the experimental procedure which is outlined below:
 
+1. Select experimental units from each brand of Agrabathi
+2. Randomly assign treatments to the units within each block
+3. Apply the relevant treatment in the form of coating the sticks of Agrabathi in the appropriate oil ensuring that there is even and consistent covering
+4. Light the Agrabathi sticks at their tip and place them in a sheltered area to burn
+5. Record the time taken of the Agrabathi to completely burn
+
+Precise details about the randomisation procedure will be discussed in \todo{Link to the relevant section}.
+
+To reduce variance in the experiment due to external factors several steps will be taken to ensure that the experimental conditions will be kept consistent:
+
+1. The Agrabathi will be burnt in the same area to prevent confounding due to location
+2. The Agrabathi will be sheltered from wind and sunlight to prevent confounding due to increased airflow over the flaming tip and increased energy due to the sunlight
+3. The blocks will be burnt at 10 minute intervals from each other to reduce confounding due to time. The interval is given to allow for the experimenters to set up and light the Agrabathi. This also allows for the majority of the Agrabathi in each group to burn concurrently to further reduce confounding due to time as well as increase the efficiency of the experiment
+
+ The response variable is the time taken for the Agrabathi to burn given in seconds. The measurement of this was achieved via online stopwatch websites and the data was then manually transcribed.
+
+
+# Pilot study
+The pilot study was run with 18 experimental units and blocks were replicated twice. 
+
+Several difficulties were experienced while conducting the pilot study. Due to the large volume of smoke produced by the Agrabathi as it burnt, the experiment had to be conducted outdoors. This made it difficult to control for environmental factors such as wind, humidity, and sunlight. Additionally it was difficult to determine exactly when the Agrabathi stopped burning and thus there are slight non-systematic errors in the measurements of the burn times due to experimental error. 
+
+The original data is provided in the appendix. A basic exploratory analysis was conducted to analyse the data:
+
+```{r}
+#Data wrangling and clean up
+pilotBurn <- read.csv("AgrabathiBurnTimePilotData.csv")
+pilotBurn$time <- pilotBurn$min*60+pilotBurn$sec
+pilotBurn$min<- NULL
+pilotBurn$sec <- NULL
+pilotBurn$block <- factor(pilotBurn$block,levels=c(1,2,3), labels =c("Hem", "Malarani" , "Tulasi"))
+pilotBurn$treat<- factor(pilotBurn$treat, levels=c("A","B","C"), labels=c("No oil", "Coconut oil", "Castor oil"))
+```
+
+```{r}
+#Descriptive stats
+library(pastecs)
+descstats<-by(pilotBurn$time, pilotBurn$block, stat.desc)
+summaryData<- data.frame()
+for (i in descstats){
+  block<-descstats$i
+  rbind(summaryData, c(block[1]))
+}
+```
+\todo{analyse this shit}
 # Model and outline of analysis
 Dhiya justification of assumption
 give later 
