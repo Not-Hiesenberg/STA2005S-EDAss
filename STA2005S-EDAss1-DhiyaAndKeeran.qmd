@@ -81,8 +81,46 @@ kable_styling(position = "center")
 ```
 \todo{analyse this shit}
 # Model and outline of analysis
-Dhiya justification of assumption
-give later 
+```{r}
+data_raw<-read.csv(file="AgrabathiBurnTimePilotData.csv")
+par(mfrow=c(1,1))
+boxplot(min*60+sec ~ treat, data=data_raw, ylab="Burn Time (seconds)", xlab="Treatments", las=1, main="Boxplot of Pilot Study Data", col="pink")
+data_raw
+
+treat<-as.factor(data_raw$treat)
+treat
+
+#Mainly estimates
+pilot<-aov(min*60+sec ~ treat, data=data_raw)
+summary(pilot)
+model.tables(pilot,"means")#Gives the mean
+model.tables(pilot, se=T)#Gives the standard error of effects
+
+#Normality tests
+par(mfrow=c(2,3))
+plot(pilot)
+
+hist(resid(pilot), main=" ", las=1, breaks=10)
+
+shapiro.test(resid(pilot))
+
+#Checking equal variance
+
+with(data_raw, tapply(min*60+sec, treat, sd))
+install.packages("car")
+library(car)
+burn_time<-data_raw$min*60 +data_raw$sec
+burn_time
+leveneTest(min*60 +sec ~ treat, data=data_raw) #Test for Homogeneity of Variances
+#Levene's test evaluates whether the variances of different groups are significantly different from each other.
+#Since p value is 0.7526, assumption of equal variances is met since variances are not sig different.
+par(mfrow=c(1,2))
+hist(burn_time, main="", las=1, xlab="Burn Time")
+qqPlot(burn_time) #Does look like data came from the same theoretical normal distr.
+
+shapiro.test(burn_time)
+
+```
 
 # The actual experiment and data
 randmisation and generation keeran
