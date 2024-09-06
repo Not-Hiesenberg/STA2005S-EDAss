@@ -25,7 +25,7 @@ This assignment explores the influence of different oil treatments on the burn t
 There is an old wives tale which hails from the ancient Indian subcontinent and has been told for generations; applying oil to an incense stick will cause it to burn faster. This quick burn time ensured that the smoke created a sacred atmosphere, a well scented home and most importantly, carried your family’s prayers to the almighty deities above. While there can be no doubt about the role of incense sticks (or Agrabathi) in the cultural and spiritual settings of an Indian home, doubt remained about the effectiveness of dipping these sticks into the rich, often fragranced, oils. This study seeks to unravel the truth behind this age-old belief, offering modern families the wisdom to discern whether investing in extra oils for incense sticks truly enhances both their connection to the divine and the speed in which the fragrance emanates throughout their homes. By providing this knowledge, we aim to empower families to make informed decisions and potentially save them from unnecessary expenses if these treatments are found not to significantly extend the burn time of incense sticks.
 
 # Objectives
-Our objective is to determine which treatment produces the shortest burn time by testing three options: a control, sandalwood oil, and coconut oil, and assessing their effects on burn time. We will examine whether these commonly used oils differ from each other (comparison of the sandalwood and coconut oil)  and whether there is a difference with the oils from the control (comparing each oil individually to the control). By blocking for the different brands of incense sticks, we can more confidently deduce the differences between treatments, as the blocks contain homogeneous units. Once the incense sticks are lit and the smoke clears, the last burning stick will reveal whether oils truly influence burn time. By repeating this experiment three times, we ensure that our findings are as robust as the scent that lingers in the air.
+Our objective is to determine which treatment has an effect on burn time looking at three treatment: a control, castor oil, and coconut oil. We will examine whether these commonly used oils differ from each other (comparison of castor and coconut oil)  and whether there is a difference with the oils from the control (comparing each oil individually to the control). By blocking for the different brands of incense sticks, we can more confidently deduce the differences between treatments, as the blocks contain homogeneous units. Once the incense sticks are lit and the smoke clears, the last burning stick will reveal whether oils truly influence burn time. By repeating this experiment three times, we ensure that our findings are as robust as the scent that lingers in the air.
 
 Formally this study will test the following hypothesis:
 
@@ -60,7 +60,7 @@ To reduce variance in the experiment due to external factors several steps will 
 
 1. The Agrabathi will be burnt in the same area to prevent confounding due to location
 2. The Agrabathi will be sheltered from wind and sunlight to prevent confounding due to increased airflow over the flaming tip and increased energy due to the sunlight
-3. The blocks will be burnt at 10 minute intervals from each other to reduce confounding due to time. The interval is given to allow for the experimenters to set up and light the Agrabathi. This also allows for the majority of the Agrabathi in each group to burn concurrently to further reduce confounding due to time as well as increase the efficiency of the experiment
+3. The blocks will be burnt at 10 minute intervals from each other to reduce confounding due to time. The interval is given to allow for the experimenters to set up and light the Agrabathi. This also allows for the majority of the Agrabathi in each group to burn concurrently to further reduce confounding due to time as well as increase the efficiency of the experiment.
 
  The response variable is the time taken for the Agrabathi to burn given in seconds. The measurement of this was achieved via online stopwatch websites and the data was then manually transcribed.
 
@@ -103,13 +103,13 @@ The grand mean is `{r} round(mean(pilotBurn$time),2)` and grand sample standard 
 From Table 1, one notes some differences in the means across the three treatments. The control group shows the lowest mean burn time but displays the highest standard deviation out of all the treatments. This may be due to the heterogeneity of experimental units. The oil treatments show smaller standard deviations which may be indicative of a treatment effect. Additionally all three treatments display a positive skew. \todo{Check the skew dir}These insights suggest a need for more data to test for significant effects.
 
 # Data collection and Assumptions
-Dhiya
+
 
 
 # Model and outline of analysis
 This study will employ the following model for the data:
 $$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
-Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$. We make the assumption of additivity and thus exclude the possibility of interactions between block and treatment effects.
+Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$.
 ```{r}
 #| output: false
 #| eval: false
@@ -152,8 +152,6 @@ qqPlot(burn_time) #Does look like data came from the same theoretical normal dis
 shapiro.test(burn_time)
 
 ```
- Keeran
-
 
 # Randomisation
 Randomisation took place within each block of 3 experimental units (EUs). The procedure was as follows:
@@ -188,10 +186,10 @@ kable_styling(position = "center", latex_options="hold_position")
 ```
 Where A,B, and C correspond to the treatment of no oil, coconut oil and castor oil respectively.
 
-\todo{generate randomisatoin and give in appendix}
+# The actual experiment and data
+see appendix
+df is set up below
 
-# Data Collection
-Dhiya do the justifications of assumptions here
 ```{r}
 # Data wrangling for generated data
 genBurn <- read.csv("AgrabathiBurnTimeGeneratedData.csv")
@@ -204,12 +202,6 @@ genBurn$treat<- factor(genBurn$treat, levels=c("A","B","C"), labels=c("No oil", 
 
 
 
-# Notes from the Experiment
-keeran issues we ran into number of replications 
-
-
-
-
 # ANOVA
 dhiya DO from here down on friday 12pm M202
 
@@ -217,8 +209,11 @@ dhiya DO from here down on friday 12pm M202
 bonferrini corrections
 keeran
 
+# Interpretation
+both
+
 # Conclusion
-both thursday 
+both
 
 # Appendix 
 when you talk about data gen include analysis of n pilot data
@@ -252,5 +247,3 @@ for (i in 1:3){ #block
 df<-cbind(df,time=times)
 write.csv(df,row.names=FALSE,file="gendata.csv")
 ```
-
-insert stuff
