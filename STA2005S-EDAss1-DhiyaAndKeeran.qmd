@@ -109,7 +109,7 @@ From Table 1, one notes some differences in the means across the three treatment
 # Model and outline of analysis
 This study will employ the following model for the data:
 $$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
-Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$.
+Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$. Additionally we assume an additive model and thus exclude the possibility of interaction between block and treatment effects.
 ```{r}
 #| output: false
 #| eval: false
@@ -209,11 +209,9 @@ dhiya DO from here down on friday 12pm M202
 bonferrini corrections
 keeran
 
-# Interpretation
-both
 
 # Conclusion
-both
+both thursday 12pm M202
 
 # Appendix 
 when you talk about data gen include analysis of n pilot data
