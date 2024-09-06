@@ -102,6 +102,10 @@ kable_styling(position = "center", latex_options="hold_position")
 The grand mean is `{r} round(mean(pilotBurn$time),2)` and grand sample standard deviation is `{r} round(sd(pilotBurn$time),2)`.
 From Table 1, one notes some differences in the means across the three treatments. The control group shows the lowest mean burn time but displays the highest standard deviation out of all the treatments. This may be due to the heterogeneity of experimental units. The oil treatments show smaller standard deviations which may be indicative of a treatment effect. Additionally all three treatments display a positive skew. \todo{Check the skew dir}These insights suggest a need for more data to test for significant effects.
 
+# Data collection and Assumptions
+
+
+
 # Model and outline of analysis
 This study will employ the following model for the data:
 $$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
@@ -212,6 +216,7 @@ both
 both
 
 # Appendix 
+when you talk about data gen include analysis of n pilot data
 ```{r}
 #| eval: false
 #Generation of data
