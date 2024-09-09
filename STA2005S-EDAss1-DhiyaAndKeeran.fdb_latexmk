@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1725639089.80346 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1725639091.32878 0
+["pdflatex"] 1725872001.90918 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1725872003.61541 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc" 1622837620 3042 0e2b14b9be7d01075a4c4591d5d1781b ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
@@ -264,9 +264,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1719069466 5483212 5ca4a6f711768cda56ff4b2d946fe634 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1719069505 8238424 41083bd439cd9559a654868940f15f11 ""
   "/usr/local/texlive/2024/texmf.cnf" 1719070383.17195 770 62e5b8f6139c022615d2c979c6c45302 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1725639091.19314 6408 c15758fd9a0a9e7f8219af277ad78f0f "pdflatex"
-  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1725639082.88396 17252 ba73f36df0bb45e7730a4b0eee31d635 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1725639091.19514 1067 0b8f74167e33befeab1096b9b072c58d "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1725872003.4624 6080 12fb64882edfc1a72d33a2615c17a061 "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1725871997.13661 23888 ba199b9e2ddebf775fb612cdd62db3a3 ""
+  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1725872003.4644 964 3bc2faa1b4e4a148004cce47a86d3b7b "pdflatex"
   "knotes.sty" 1725473571.32689 12252 e9ee6a62ed234eb71b66c16aaa851545 ""
   (generated)
   "STA2005S-EDAss1-DhiyaAndKeeran.aux"

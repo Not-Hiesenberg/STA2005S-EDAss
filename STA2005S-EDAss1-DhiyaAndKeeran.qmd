@@ -17,6 +17,16 @@ execute:
 filters:
   - parse-latex
 ---
+
+```{r setup}
+library(dplyr)
+library(pastecs)
+library(dplyr)
+library(kableExtra)
+library(car)
+
+```
+
 \newpage
 # Introduction 
 This assignment explores the influence of different oil treatments on the burn time of incense sticks through the application of a randomized block design (RBD). This study is structured around 3 distinct treatment types (..) randomly applied across 18 experimental units, with the incense brand serving as a blocking factor. By acknowledging the differences that might arise due to manufacturing or material quality, blocking for brands serves as a crucial step in isolating the true effects of the oil treatments. By structuring the experiment in this way, we aim to minimize the impact of confounding variables, allowing us to attribute any variations in burn time more confidently to the treatments themselves rather than to the intrinsic characteristics of the incense sticks.
@@ -64,6 +74,39 @@ To reduce variance in the experiment due to external factors several steps will 
 
  The response variable is the time taken for the Agrabathi to burn given in seconds. The measurement of this was achieved via online stopwatch websites and the data was then manually transcribed.
 
+# Randomisation
+Randomisation took place within each block of 3 experimental units (EUs). The procedure was as follows:
+
+1. Label the EUs 1-3
+2. Generate three random numbers between 1 and 1000 and iteratively assign them to the EUs (first generated number to EU 1, etc.)
+3. Sort the random numbers in ascending order
+4. Assign the treatments to the EUs using this ordered list, i.e., the EU corresponding to the lowest random number will be assigned the control treatment of no oil, the second number will get the coconut oil treatment and the largest number will get the castor oil treatment
+5. Repeat 1-4 for all three blocks
+6. Repeat 1-5 for every replication of the experiment
+
+A sample randomisation for a singly replicated experiment is given below:
+
+```{r}
+#| output: true
+#example randomisation
+
+sampRand <-data.frame()
+
+for (i in 1:3){
+set.seed(sample(1:1000000))
+randOrd<-sample(1:1000,3)
+sorted<-sort(randOrd)
+treat<-match(sorted,randOrd)
+treat<-replace(treat, TRUE, LETTERS[unlist(treat)])
+sampRand<- rbind(sampRand,treat)
+}
+colnames(sampRand)<-c(1,2,3)
+rownames(sampRand)<-c("Hem", "Malarani" , "Tulasi")
+kbl(sampRand, format="latex",booktabs=TRUE, caption="Sample Randomisation")|>
+kable_styling(position = "center", latex_options="hold_position")
+```
+Where A,B, and C correspond to the treatment of no oil, coconut oil and castor oil respectively. The full randomisation used in given in the Appendix.
+
 
 # Pilot study
 The pilot study was run with 18 experimental units and blocks were replicated twice. 
@@ -85,7 +128,7 @@ pilotBurn$treat<- factor(pilotBurn$treat, levels=c("A","B","C"), labels=c("No oi
 ```{r Descriptive stats}
 #| output: true
 #
-library(pastecs)
+
 descstats<-by(pilotBurn$time, pilotBurn$treat, stat.desc)
 summaryData<- data.frame()
 for (block in descstats){
@@ -93,8 +136,7 @@ for (block in descstats){
   summaryData<-rbind(summaryData, data.frame(Median=block[8],Mean=block[9],SD=block[13]))
 }
 row.names(summaryData)<-c("Control", "Coconut Oil" , "Castor Oil")
-library(dplyr)
-library(kableExtra)
+
 kbl(summaryData,digits=2, format="latex",booktabs=TRUE, caption="Basic descriptive statistics")|>
 kable_styling(position = "center", latex_options="hold_position")
 
@@ -103,13 +145,19 @@ The grand mean is `{r} round(mean(pilotBurn$time),2)` and grand sample standard 
 From Table 1, one notes some differences in the means across the three treatments. The control group shows the lowest mean burn time but displays the highest standard deviation out of all the treatments. This may be due to the heterogeneity of experimental units. The oil treatments show smaller standard deviations which may be indicative of a treatment effect. Additionally all three treatments display a positive skew. \todo{Check the skew dir}These insights suggest a need for more data to test for significant effects.
 
 # Data collection and Assumptions
+```{r}
+# Data wrangling for generated data
+genBurn <- read.csv("AgrabathiBurnTimeGeneratedData.csv")
+genBurn$block<- as.integer(genBurn$block)
+
+genBurn$block <- factor(genBurn$block,levels=c(1,2,3), labels =c("Hem", "Malarani" , "Tulasi"))
+genBurn$treat<- factor(genBurn$treat, levels=c("A","B","C"), labels=c("No oil", "Coconut oil", "Castor oil"))
+
+```
 
 
+The full experiment was run with 30 replications per block. This took place using the same experimental and randomisation procedure as outlined above. The orginal data is given in the Appendix. Normality tests were then conducted to justify the assumptions which will be made (discussed in the next section) in the model. \todo{Add in all of Dhiya's analysis here and typeset}
 
-# Model and outline of analysis
-This study will employ the following model for the data:
-$$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
-Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$. Additionally we assume an additive model and thus exclude the possibility of interaction between block and treatment effects.
 ```{r}
 #| output: false
 #| eval: false
@@ -135,7 +183,7 @@ shapiro.test(resid(pilot))
 
 with(genBurn, tapply(time, treat, sd))
 #install.packages("car")
-library(car)
+
 leveneTest(time ~ treat, data=genBurn) #Test for Homogeneity of Variances
 #Levene's test evaluates whether the variances of different groups are significantly different from each other.
 par(mfrow=c(1,2))
@@ -146,54 +194,22 @@ shapiro.test(genBurn$time)
 
 ```
 
-# Randomisation
-Randomisation took place within each block of 3 experimental units (EUs). The procedure was as follows:
-
-1. Label the EUs 1-3
-2. Generate three random numbers between 1 and 1000 and iteratively assign them to the EUs (first generated number to EU 1, etc.)
-3. Sort the random numbers in ascending order
-4. Assign the treatments to the EUs using this ordered list, i.e., the EU corresponding to the lowest random number will be assigned the control treatment of no oil, the second number will get the coconut oil treatment and the largest number will get the castor oil treatment
-5. Repeat 1-4 for all three blocks
-6. Repeat 1-5 for every replication of the experiment
-
-A sample randomisation for a singly replicated experiment is given below:
-
-```{r}
-#| output: true
-#example randomisation
-library(dplyr)
-sampRand <-data.frame()
-
-for (i in 1:3){
-set.seed(sample(1:1000000))
-randOrd<-sample(1:1000,3)
-sorted<-sort(randOrd)
-treat<-match(sorted,randOrd)
-treat<-replace(treat, TRUE, LETTERS[unlist(treat)])
-sampRand<- rbind(sampRand,treat)
-}
-colnames(sampRand)<-c(1,2,3)
-rownames(sampRand)<-c("Hem", "Malarani" , "Tulasi")
-kbl(sampRand, format="latex",booktabs=TRUE, caption="Sample Randomisation")|>
-kable_styling(position = "center", latex_options="hold_position")
-```
-Where A,B, and C correspond to the treatment of no oil, coconut oil and castor oil respectively.
-
-# The actual experiment and data
-see appendix
-df is set up below
-
-```{r}
-# Data wrangling for generated data
-genBurn <- read.csv("AgrabathiBurnTimeGeneratedData.csv")
-genBurn$block<- as.integer(genBurn$block)
-
-genBurn$block <- factor(genBurn$block,levels=c(1,2,3), labels =c("Hem", "Malarani" , "Tulasi"))
-genBurn$treat<- factor(genBurn$treat, levels=c("A","B","C"), labels=c("No oil", "Coconut oil", "Castor oil"))
-
-```
 
 
+# Model
+This study will employ the following model for the data:
+$$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
+Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$. Additionally we assume an additive model and thus exclude the possibility of interaction between block and treatment effects.
+
+This model will make the following assumptions:
+1. Homoscedasticity
+2. Normally distributed error terms
+3. Independant observations
+
+These assumptions are justified in the previous section as \todo{add in this stuff based on Dhiya's analysis}
+
+# Outline of Analysis
+\todo{Fluff up once we have actually done it}
 
 # ANOVA
 ```{r}
@@ -202,15 +218,59 @@ summary(anova)
 ```
 
 # Contrasts
-bonferrini corrections
-keeran
+This study examines 2 planned contrasts, viz., if there is a difference in the burn time of Agrabathi when no oil is applied versus when oil is applied and if there is difference in the burn time of Agrabathi when coconut oil is applied as opposed to castor oil.
+
+To account for these comparisons this study sets a maximum allowable experiment-wise type I error rate of $5%$. The comparisons are then corrected via the Bonferroni method to ensure this limit is upheld.
+
+Formally we consider the following contrasts:
+\begin{align*}
+  L_1&=\mu_{Coconut}-\mu_{Castor}\\
+  L_2&=\mu_{No\ Oil}-\frac{1}{2}(\mu_{Coconut}+\mu_{Castor})
+\end{align*}
+
 
 
 # Conclusion
 both thursday 12pm M202
 
+\newpage
 # Appendix 
-when you talk about data gen include analysis of n pilot data
+The original randomisation used is given below:
+```{r}
+#| output: true
+#example randomisation
+
+sampRand <-data.frame()
+
+for (j in 1:30){
+  for (i in 1:3){
+  set.seed(sample(1:1000000))
+  randOrd<-sample(1:1000,3)
+  sorted<-sort(randOrd)
+  treat<-match(sorted,randOrd)
+  treat<-replace(treat, TRUE, LETTERS[unlist(treat)])
+  sampRand<- rbind(sampRand,treat)
+  }
+}
+
+sampRand<-cbind(c(rep("Hem",30), rep("Malarani",30) , rep("Tulasi",30)),sampRand)
+colnames(sampRand)<-c("Block",1,2,3)
+sampRand<-sampRand[sample(nrow(sampRand)),]
+rownames(sampRand)<- NULL
+kbl(sampRand, format="latex",booktabs=TRUE, longtable= TRUE, caption="Randomisation within blocks", row.names=NA)|>
+kable_styling(position = "center", latex_options="hold_position")
+```
+The full data (after sorting) for the experiment is given below:
+
+```{r}
+#| output: true
+
+modGenBurn<-genBurn
+modGenBurn$time<-round(modGenBurn$time,2)
+kbl(genBurn, longtable = TRUE, format="latex",booktabs=TRUE, caption="Randomisation within blocks", row.names=NA)|>
+kable_styling(position = "center", latex_options="hold_position")
+```
+
 ```{r}
 #| eval: false
 #Generation of data
@@ -271,7 +331,7 @@ shapiro.test(resid(pilot))
 
 with(data_raw, tapply(min*60+sec, treat, sd))
 #install.packages("car")
-library(car)
+
 burn_time<-data_raw$min*60 +data_raw$sec
 burn_time
 leveneTest(min*60 +sec ~ treat, data=data_raw) 
