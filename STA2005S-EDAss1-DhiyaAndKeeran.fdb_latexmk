@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1725997819.26811 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1725997820.82903 0
+["pdflatex"] 1726006351.13616 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1726006352.71593 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc" 1622837620 3042 0e2b14b9be7d01075a4c4591d5d1781b ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
@@ -46,6 +46,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmr8.pfb" 1255129361 122174 a7a08406857c9530a0320a2517f60370 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb" 1255129361 119663 e82fa1a58f98ccd89bdbd77311ac9cf1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy10.pfb" 1254269338 27863 09ce3735688ffde955e72da27c95b61a ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/lm/lmsy8.pfb" 1254269338 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2024/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/local/texlive/2024/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -264,9 +265,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1719069466 5483212 5ca4a6f711768cda56ff4b2d946fe634 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1719069505 8238424 41083bd439cd9559a654868940f15f11 ""
   "/usr/local/texlive/2024/texmf.cnf" 1719070383.17195 770 62e5b8f6139c022615d2c979c6c45302 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1725997820.68976 6225 44f45b3daeb0ab55f5400af67f0797fe "pdflatex"
-  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1725997814.66159 24504 ee91270a0da5b8971f4a317ff37f49a9 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1725997820.69176 964 3bc2faa1b4e4a148004cce47a86d3b7b "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1726006352.57951 6376 402f3ba9325bd23f2d29bdebca603cf0 "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1726006346.51964 26228 72708142cf17a7a10a7b0fa8a622d155 ""
+  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1726006352.58151 964 3bc2faa1b4e4a148004cce47a86d3b7b "pdflatex"
   "knotes.sty" 1725473571.32689 12252 e9ee6a62ed234eb71b66c16aaa851545 ""
   (generated)
   "STA2005S-EDAss1-DhiyaAndKeeran.aux"
