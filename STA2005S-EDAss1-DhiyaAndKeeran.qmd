@@ -24,7 +24,7 @@ library(pastecs)
 library(dplyr)
 library(kableExtra)
 library(car)
-
+library(psych)
 ```
 
 \newpage
@@ -227,8 +227,29 @@ Formally we consider the following contrasts:
   L_1&=\mu_{Coconut}-\mu_{Castor}\\
   L_2&=\mu_{No\ Oil}-\frac{1}{2}(\mu_{Coconut}+\mu_{Castor})
 \end{align*}
+Note that $L_1$ and $L_2$ are orthogonal contrasts and thus partition the sum square treatment. The table below summarises the analysis of the contrasts.
+```{r}
+#| output: true
 
+l1<-c(0,1,-1)
+l2<-c(1,-0.5,-0.5)
+mat<-cbind(l1,l2)
+contrasts(genBurn$treat)<-mat
+model <- aov(time ~ treat+block,data=genBurn)
+tab<-unlist(summary.aov(model, split=list(treat=list("Coconut vs. Castor"=1, "Oil vs. No oil" = 2)))[1])
 
+df<-data.frame(labs=c(1,2,3,4,6))
+for(i in c(1,6,11,16,21)){
+  df<-cbind(df,data.frame(unlist(tab[i:(i+4)])))
+}
+df$labs=NULL
+rownames(df)<-c("Treatment","-L1","\t-L2","Error","Total")
+colnames(df)<-c("DF","SS","MSS","F","P(F>)")
+
+kbl(df,digits=c(1,1,1,3,4), format="latex",booktabs=TRUE, caption="Analysis of Contrasts")|>
+kable_styling(position = "center", latex_options="hold_position")
+```
+This reveals an interesting nuance to the data. 
 
 # Conclusion
 both thursday 12pm M202
