@@ -27,15 +27,20 @@ library(car)
 library(psych)
 ```
 
+
+
+
+
+
+
 \newpage
 # Introduction 
-This assignment explores the influence of different oil treatments on the burn time of incense sticks through the application of a randomized block design (RBD). This study is structured around 3 distinct treatment types (..) randomly applied across 18 experimental units, with the incense brand serving as a blocking factor. By acknowledging the differences that might arise due to manufacturing or material quality, blocking for brands serves as a crucial step in isolating the true effects of the oil treatments. By structuring the experiment in this way, we aim to minimize the impact of confounding variables, allowing us to attribute any variations in burn time more confidently to the treatments themselves rather than to the intrinsic characteristics of the incense sticks.
+There is an old wives tale which hails from the ancient Indian subcontinent and has been told for generations; applying oil to an incense stick will cause it to burn faster. This quick burn time ensured that the smoke created a sacred atmosphere, a well scented home and most importantly, carried your family’s prayers to the almighty deities above. While there can be no doubt about the role of incense sticks (or Agrabathi) in the cultural and spiritual settings of an Indian home, doubt remained about the effectiveness of dipping these sticks into the rich, often fragranced, oils. This study seeks to unravel the truth behind this age-old belief, offering modern families the wisdom to discern whether investing in extra oils for Agrabathi truly enhances both their connection to the divine and the speed in which the fragrance emanates throughout their homes. By providing this knowledge, this study aims to empower families to make informed decisions and potentially save them from unnecessary expenses if these treatments are found not to significantly extend the burn time of incense sticks.
 
-# Motivation
-There is an old wives tale which hails from the ancient Indian subcontinent and has been told for generations; applying oil to an incense stick will cause it to burn faster. This quick burn time ensured that the smoke created a sacred atmosphere, a well scented home and most importantly, carried your family’s prayers to the almighty deities above. While there can be no doubt about the role of incense sticks (or Agrabathi) in the cultural and spiritual settings of an Indian home, doubt remained about the effectiveness of dipping these sticks into the rich, often fragranced, oils. This study seeks to unravel the truth behind this age-old belief, offering modern families the wisdom to discern whether investing in extra oils for incense sticks truly enhances both their connection to the divine and the speed in which the fragrance emanates throughout their homes. By providing this knowledge, we aim to empower families to make informed decisions and potentially save them from unnecessary expenses if these treatments are found not to significantly extend the burn time of incense sticks.
+This study explores the influence of different oil treatments on the burn time of incense sticks through the application of a randomized block design (RBD).  
 
 # Objectives
-Our objective is to determine which treatment has an effect on burn time looking at three treatment: a control, castor oil, and coconut oil. We will examine whether these commonly used oils differ from each other (comparison of castor and coconut oil)  and whether there is a difference with the oils from the control (comparing each oil individually to the control). By blocking for the different brands of incense sticks, we can more confidently deduce the differences between treatments, as the blocks contain homogeneous units. Once the incense sticks are lit and the smoke clears, the last burning stick will reveal whether oils truly influence burn time. By repeating this experiment three times, we ensure that our findings are as robust as the scent that lingers in the air.
+The objective of the study is to determine if the treatments have an effect on the burn time of Agrabathi. The study considers three levels to the treatment factor: a control of no oil, castor oil, and coconut oil. The study will examine whether these commonly used oils differ from each other (comparison of castor and coconut oil)  and whether there is a difference between the oils and the control (comparing the average response of the oils to the average response of the control). By blocking for the different brands of incense sticks, we can more confidently deduce the differences between treatments, as the blocks contain homogeneous units. Once the incense sticks are lit and the smoke clears, the last burning stick will reveal whether oils truly influence the burn time.
 
 Formally this study will test the following hypothesis:
 
@@ -54,7 +59,12 @@ $L_2$: The effect of no oil is equal to the average effect of applying the oils
  
 
 # Design and Procedure
-This experiment will employ a randomised block design with a single factor - application of oil - of three levels, viz., control (no oil), coconut oil, and castor oil. The experiment will block for heterogeneity of experimental units arising from the use of different brands of Agrabathi viz., Hem, Malarani and Tulasi. The factor levels have been selected as they are oils commonly used in Indian households across the world and are the de facto choices during day to day use. The brands of Agrabathi from which the experimental units are drawn from represent easily found and widely exported brands. 
+
+This experiment will employ a randomised block design with a single treatment factor - application of oil - of three levels, viz., control (no oil), coconut oil, and castor oil. The experiment will block for heterogeneity of experimental units arising from the use of different brands of Agrabathi viz., Hem, Malarani and Tulasi. 
+
+The factor levels have been selected as they are oils commonly used in Indian households across the world and are the de facto choices during day to day use. The brands of Agrabathi from which the experimental units are drawn from represent easily found and widely exported brands.
+
+By acknowledging the differences that might arise due to manufacturing or material quality, blocking for brands serves as a crucial step in isolating the true effects of the oil treatments. By structuring the experiment in this way, the study aims to minimize the impact of confounding variables, allowing for the attribution of any variations in burn time more confidently to the treatments themselves rather than to the intrinsic characteristics of the incense sticks.
 
 A pilot study will be conducted to assess the viability of the experimental procedure which is outlined below:
 
@@ -142,7 +152,7 @@ kable_styling(position = "center", latex_options="hold_position")
 
 ```
 The grand mean is `{r} round(mean(pilotBurn$time),2)` and grand sample standard deviation is `{r} round(sd(pilotBurn$time),2)`.
-From Table 1, one notes some differences in the means across the three treatments. The control group shows the lowest mean burn time but displays the highest standard deviation out of all the treatments. This may be due to the heterogeneity of experimental units. The oil treatments show smaller standard deviations which may be indicative of a treatment effect. Additionally all three treatments display a positive skew. \todo{Check the skew dir}These insights suggest a need for more data to test for significant effects.
+From Table 1, one notes some differences in the means across the three treatments. The control group shows the lowest mean burn time but displays the highest standard deviation out of all the treatments. This may be due to the heterogeneity of experimental units. The oil treatments show smaller standard deviations which may be indicative of a treatment effect. Additionally all three treatments display a positive skew. These insights suggest a need for more data to test for significant effects.
 
 # Data collection and Assumptions
 ```{r}
@@ -159,8 +169,8 @@ genBurn$treat<- factor(genBurn$treat, levels=c("A","B","C"), labels=c("No oil", 
 The full experiment was run with 30 replications per block. This took place using the same experimental and randomisation procedure as outlined above. The orginal data is given in the Appendix. Normality tests were then conducted to justify the assumptions which will be made (discussed in the next section) in the model. \todo{Add in all of Dhiya's analysis here and typeset}
 
 ```{r}
-#| output: false
-#| eval: false
+#| output: true
+#| eval: true
 
 par(mfrow=c(1,1))
 boxplot(time ~ block, data=genBurn, ylab="Burn Time (seconds)", xlab="Different brands", las=1, main="Boxplot of Blocks", col="pink")
@@ -239,25 +249,44 @@ The histogram of the residuals show a bell-shaped curve which is a well-known ch
 
 # Model
 This study will employ the following model for the data:
-$$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ \varepsilon_{ij} $$
-Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the corner point constraint such that $\alpha_1=0$. Additionally we assume an additive model and thus exclude the possibility of interaction between block and treatment effects. \todo{add what each term represents, check the model used in ANOVA}
+$$ Y_{ij}= \mu+ \alpha_i+ \beta_j+ (\alpha\beta)_{ij}+\varepsilon_{ij} $$
+Where $\varepsilon\sim N(0,\sigma^2)$ is the error term, $1\leq i\leq 3$ indexes the treatments, $1\leq j\leq 3$ indexes the blocks. Additionally we employ the sum to zero constraint such that $\sum_{i=1}^{3}{\alpha_i}=\sum_{j=1}^{3}{\beta_j}=\sum_{ij}{(\alpha\beta)_{ij}}=0$. Additionally we assume an interactive model and thus include the possibility of interaction between block and treatment effects.
+
+Each of these terms are interpreted as follows:
+
+1. $\mu$ is the overall mean
+2. $\alpha_i$ is the main effect of the $i$-th level of the treatment factor (oil application)
+3. $\beta_j$ is the main effect of of the $j$-th level of the blocking factor (brand)
+4. $(\alpha\beta)_{ij}$ is the interaction between the $i$-th level of the treatment and the $j$-th level of the blocking factor.
 
 This model will make the following assumptions:
 
 1. Homoscedasticity
 2. Normally distributed error terms
-3. Independant observations
+3. Independent observations
 
-These assumptions are justified in the previous section as \todo{add in this stuff based on Dhiya's analysis}
+These assumptions will be justified and assessed during the model checking stage of the paper.
 
 # Outline of Analysis
 The analysis of results will aim to provide conclusive evidence to support or reject the a priori hypothesis of this study as well as evaluate the root causes of these results my means of analysing the contrasts of interest.
 
 # ANOVA
 ```{r}
-anova<-aov(genBurn$time ~ block + treat, data=genBurn)
-anova
-summary(anova)
+#| output: true
+anova<-aov(time ~ block + treat, data=genBurn)
+tab<-unlist(summary(anova))
+
+df<-data.frame(labs=c(1,2,3))
+for(i in c(1,4,7,10,13)){#row indexing
+  df<-cbind(df,data.frame(unlist(tab[i:(i+2)])))
+}
+df$labs=NULL
+rownames(df)<-c("Block","Treatment","Error")
+colnames(df)<-c("DF","SS","MSS","F","P(>F)")
+
+kbl(df,digits=c(1,1,1,3,4), format="latex",booktabs=TRUE, caption="Analysis of Variance")|>
+kable_styling(position = "center", latex_options="hold_position")
+
 ```
 
 Blocks: The F-value for blocks is 19.27 with a very low p-value (1.25e-07), indicating that the variability between blocks is highly significant.
@@ -305,7 +334,7 @@ Bonferroni corrected confidence intervals for these contrasts  are now construct
 
 ```{r}
 #| output: true
-tabCI<-unlist(confint(model,c("treatl1","treatl2"),level=1-(0.05/2*2)))
+tabCI<-unlist(confint(model,c("treatl1","treatl2"),level=0.95))
 df<-data.frame(tabCI)
 df$est=(df$X2.5..+df$X97.5..)/2
 colnames(df)<-c("Lower Bound","Upper Bound","Point Estimate")
@@ -315,7 +344,7 @@ kbl(df,digits=3, format="latex",booktabs=TRUE, caption="Bonferroni corrected con
 kable_styling(position = "center", latex_options="hold_position")
 
 ```
-Based on these intervals the conclusions drawn by the initial analysis of the p-values is correct as the CI for L1 contains zero thus there is no significant difference between the oils. Similarly the CI for L2 does not contain zero and thus there is a difference between the application of oil versus no oil.
+Based on these intervals the conclusions drawn by the initial analysis of the p-values is correct as the CI for L1 contains zero thus there is no significant difference between the oils. Similarly the CI for L2 does not contain zero and thus there is a difference between the application of oil versus no oil. \todo{talk about correctio n}
 
 # Conclusion
 both thursday 12pm M202
