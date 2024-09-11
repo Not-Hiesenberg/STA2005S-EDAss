@@ -222,8 +222,6 @@ Shapiro Wilk Normality Test:
 W = 0.98771, p-value = 0.5643
 The null hypothesis for this test would be that the data is normally distributed while the alternate hypothesis would be that the data follows a different distribution. Since our p value is quite large p>0.5, therefore we fail to reject the null hypothesis concluding the distribution is normal. 
  
-
-
 Above (histogram and QQplot): (Yet our Levene Test is secure so there is a homoscedasticity)
 The Q-Q plot suggests that the central portion of the burn time data follows a normal distribution reasonably well, as the points around the middle of the plot lie close to the straight line. However, there are notable deviations at both ends, with the lower tail showing lighter-than-expected behavior (fewer extreme small values) and the upper tail indicating heavier-than-expected values (more extreme large values). These deviations from the line, particularly at the tails, suggest that the data does not fully adhere to the assumption of normality. The plot shows a blue confidence band. Points falling within this band suggest acceptable deviations from normality. However, several points in the tails fall outside the band, strengthening the evidence of non-normality in the extremes.
 The histogram of burn time data appears to have a slight right skew. Most of the burn time values are concentrated between 1,500 and 3,500, with a peak frequency around 2,500. There are a few observations with higher burn times, reaching up to 4,000, which contribute to the right tail. This skewness aligns with what is seen in the Q-Q plot, where the points in the upper quantiles deviate above the line, indicating heavier tails on the right side. While the overall distribution of burn times does not seem to be drastically skewed, the deviations in the tail could suggest a slight departure from normality, as indicated by both the histogram and the Q-Q plot.
@@ -432,3 +430,10 @@ qqPlot(burn_time) #Does look like data came from the same theoretical normal dis
 shapiro.test(burn_time)
 
 ```
+
+Normality tests:
+Fitted vs residuals: Should test for linearity, unequal error variances and outliers. The data should be randomly located around the horizontal line, there should be no extreme outliers, and the residual spread should be roughly constant against the fitted values to suggest homoscedasticity. Our graph does not show any extreme funnel shape but there is a widening as we move right through the plot indicating a potential loss of homoscedasticity.  
+QQ plot: The most important test for normality, the data is basically supposed to stay on the 45 degree line but ours deviates into almost an S shape which indicates skewness. Since this is the most important test of normality and the Shapiro test is very accurate for small data sizes such as ours, this does not inspire confidence in our normal assumption which appears to be violated. 
+Scale Location: This plot checks for homoscedasticity. The red line should be horizontal if the variance is constant. Our red line decreases, showing that variance is likely not constant. 
+Constant Leverage: Similar to our fitted vs residuals, should be scattered around 0 with no discernible pattern. 
+Our final histogram: No clear bell shape, there seems to be a positive skew. There is no symmetry in this graph. 
