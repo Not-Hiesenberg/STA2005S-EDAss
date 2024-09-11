@@ -163,21 +163,24 @@ The full experiment was run with 30 replications per block. This took place usin
 #| eval: false
 
 par(mfrow=c(1,1))
-boxplot(time ~ treat, data=genBurn, ylab="Burn Time (seconds)", xlab="Treatments", las=1, main="Boxplot of Experimental Data", col="pink")
+boxplot(time ~ block, data=genBurn, ylab="Burn Time (seconds)", xlab="Different brands", las=1, main="Boxplot of Blocks", col="pink")
+boxplot(time ~ treat+block, data=genBurn, ylab="Burn Time (seconds)", xlab=" ", las=1, main="Boxplots of Treatments and Blocks")
 
 treat<-as.factor(genBurn$treat)
 treat
 
 #Mainly estimates
-model.tables(pilot,"means")#Gives the mean
-model.tables(pilot, se=T)#Gives the standard error of effects
+final<-aov(time ~ treat, data=genBurn)
+final
+model.tables(final,"means")#Gives the mean
+model.tables(final, se=T)#Gives the standard error of effects
 
 #Normality tests
 par(mfrow=c(2,3))
-plot(pilot)
+plot(final)
 
-hist(resid(pilot), main=" ", las=1, breaks=10)
-shapiro.test(resid(pilot))
+hist(resid(final), main=" ", las=1, breaks=10)
+shapiro.test(resid(final))
 
 #Checking equal variance
 
@@ -193,6 +196,46 @@ qqPlot(genBurn$time)
 shapiro.test(genBurn$time)
 
 ```
+
+In figure 1, there is an equal proportion of the inner quartile range both above and below the mean and the tails of the boxplots are symmetrical, these properties are evidence that the data follows a normal distribution. In a randomized block design, it's important to check if the data within each block follows a normal distribution. This helps ensure that the residuals of the ANOVA model are likely to be normally distributed, which is a key assumption for the validity of the F-tests. Non-normality may indicate potential issues like outliers or skewed data, which could violate ANOVA's assumptions and lead to inaccurate conclusions. It is visually clear from figure one that our data is normal. The whiskers on the boxplots are approximately equal across the blocks, yet slightly shorter for ‘Hem’ than ‘Malarani’ or ‘Tulasi’. Due to an approximate average length of whiskers across the blocks, we can conclude equal variances, yet a Levene test will be performed to ensure accuracy since there is some disparity within the ‘Hem’ block of this exploratory analysis. 
+A further delve into the treatments within the blocks (figure 2):
+In Block 1: 
+Treatment 1: The burn times are clustered, a small interquartile range and short, symmetric tails. 
+Treatment 2: The median is approximately the same at treatment 1 (control) yet a larger variability is evident. The lower tail seems to be slightly longer than the upper tail indicating a possible left skew (even though very small difference in tail length).
+Treatment 3:  High variability, clear positive skew due to a longer upper tail. The median is marginally above the median for Treatment 1 & 2. The large spread suggests increased burn time under this treatment. 
+In Block 2:
+Treatment 1: Significantly lower median compared to other treatments in block 2. There is a positive skew due to a longer upper tail. There is a much lower median present compared to the same treatment in block 1. 
+Treatment 2: There is an outlier present in this data, suggesting that we have an observation which is quite far from the rest of the data. The median is the highest in this block even though the data is grouped quite closely (smallest IQR of block 2). The entire distribution is shifted upward relative to treatment 1 in this block yet treatment 2’s lower quartile overlaps with the upper quartile of treatment 1.
+Treatment 3: High Variability and is potentially right skewed. 
+In Block 3: 
+Treatment 1:  Lowest median in this block and overall blocks, there is a clear left-skew due to asymmetric tail length. 
+Treatment 2: Symmetric tails and median which appears to be in the center of the IQR, larger variability compared to Treatment 2 in the other 2 blocks (longer tails).
+Treatment 3: Highest median in this block with a symmetrical boxplot (central median and approximately equal tail length). 
+The overall impression of this more in-depth analysis of the boxplots does seem to indicate some inconsistencies which do not represent an accurate normal distribution with homoscedasticity. This is due to asymmetric tail lengths, non-central medians and tail lengths of treatments which are not consistent throughout blocks. While there are these indications of a stray from a normal distribution, an inspection of an interaction plot/Shapiro Wilk normality test should assist us in determining whether this is due to a combined effect influencing our data which we did not account for. The variability among blocks and treatments will also be further explored by means of a Levene test and in our ANOVA analysis to determine whether these differences are statistically significant. 
+
+Interaction plot: (We can use blocking on x axis or as the lines yet give different plots)
+*Still uncertain whether should be included or not **Question for tutors. 
+ 
+Since there is no overlap or intersection between the lines and they are parallel -> no interaction. 
+OR: interaction.
+Shapiro Wilk Normality Test:
+W = 0.98771, p-value = 0.5643
+The null hypothesis for this test would be that the data is normally distributed while the alternate hypothesis would be that the data follows a different distribution. Since our p value is quite large p>0.5, therefore we fail to reject the null hypothesis concluding the distribution is normal. 
+ 
+
+
+Above (histogram and QQplot): (Yet our Levene Test is secure so there is a homoscedasticity)
+The Q-Q plot suggests that the central portion of the burn time data follows a normal distribution reasonably well, as the points around the middle of the plot lie close to the straight line. However, there are notable deviations at both ends, with the lower tail showing lighter-than-expected behavior (fewer extreme small values) and the upper tail indicating heavier-than-expected values (more extreme large values). These deviations from the line, particularly at the tails, suggest that the data does not fully adhere to the assumption of normality. The plot shows a blue confidence band. Points falling within this band suggest acceptable deviations from normality. However, several points in the tails fall outside the band, strengthening the evidence of non-normality in the extremes.
+The histogram of burn time data appears to have a slight right skew. Most of the burn time values are concentrated between 1,500 and 3,500, with a peak frequency around 2,500. There are a few observations with higher burn times, reaching up to 4,000, which contribute to the right tail. This skewness aligns with what is seen in the Q-Q plot, where the points in the upper quantiles deviate above the line, indicating heavier tails on the right side. While the overall distribution of burn times does not seem to be drastically skewed, the deviations in the tail could suggest a slight departure from normality, as indicated by both the histogram and the Q-Q plot.
+ 
+
+Fitted Vs residual and Scale Location plot:
+There is no funnel shape (no widening or narrowing or the spread of residuals in data) present in the Fitted vs residual plot, therefore no indication of heteroscedasticity. There is no discernible pattern regarding the residuals around the horizontal 0 line. 
+Scale Location has a slightly decreasing red line, it suggests that the spread of residuals (i.e., the variability of the residuals) decreases as the fitted values increase. This indicates that the model might exhibit heteroscedasticity, where the variance of the residuals is not constant across the range of the fitted values. In this case, the residuals show less variability at higher fitted values compared to lower fitted values.
+ Levene test:
+The P value =0.4419 indicating that there is homogeneity present in the variances. 
+
+The histogram of the residuals show a bell-shaped curve which is a well-known characteristic of a normal distribution. There is asymmetry present, indicating there are more positive residuals than negative ones (prediction is lower than our observed value) which signals that our assumption of normality might be violated. Yet the Shapiro Test confirms normality. 
 
 
 
@@ -214,9 +257,17 @@ The analysis of results will aim to provide conclusive evidence to support or re
 
 # ANOVA
 ```{r}
-anova<-aov(time~treat, data=genBurn)
+anova<-aov(genBurn$time ~ block + treat, data=genBurn)
+anova
 summary(anova)
 ```
+
+Blocks: The F-value for blocks is 19.27 with a very low p-value (1.25e-07), indicating that the variability between blocks is highly significant.
+Treatments: The F-value for treatments is 11.33 with a low p-value (4.34e-05), suggesting that the differences between treatments are also significant.
+Significance of Block Effect: The significant p-value for blocks suggests that differences between blocks are substantial, meaning that the block effect is crucial in explaining the variability in burn time.
+Significance of Treatment Effect: The significant p-value for treatments indicates that the treatments have a meaningful impact on burn time, suggesting that different treatments result in different burn times.
+Residuals: The residuals provide insight into the unexplained variation after accounting for block and treatment effects. Although this variation is present, it's relatively small compared to the explained variance from blocks and treatments. 
+Since the p value<0.05 for both treatment and block effect, we can reject the null hypothesis and conclude that different oils (treatments) and brands (blocking factors) affect the burn time of incense sticks. 
 
 # Contrasts
 This study examines 2 planned contrasts, viz., if there is a difference in the burn time of Agrabathi when no oil is applied versus when oil is applied and if there is difference in the burn time of Agrabathi when coconut oil is applied as opposed to castor oil.
