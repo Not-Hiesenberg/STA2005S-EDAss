@@ -266,7 +266,7 @@ kbl(df,digits=3, format="latex",booktabs=TRUE, caption="Bonferroni corrected con
 kable_styling(position = "center", latex_options="hold_position")
 
 ```
-
+Based on these intervals the conclusions drawn by the initial analysis of the p-values is correct as the CI for L1 contains zero thus there is no significant difference between the oils. Similarly the CI for L2 does not contain zero and thus there is a difference between the application of oil versus no oil.
 
 # Conclusion
 both thursday 12pm M202
