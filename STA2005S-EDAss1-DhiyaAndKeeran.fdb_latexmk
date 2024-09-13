@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1726258673.46642 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1726258675.04991 0
+["pdflatex"] 1726087555.74273 "STA2005S-EDAss1-DhiyaAndKeeran.tex" "STA2005S-EDAss1-DhiyaAndKeeran.pdf" "STA2005S-EDAss1-DhiyaAndKeeran" 1726087557.40844 0
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc" 1622837620 3042 0e2b14b9be7d01075a4c4591d5d1781b ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
@@ -270,13 +270,13 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1719069466 5483212 5ca4a6f711768cda56ff4b2d946fe634 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1719069505 8238424 41083bd439cd9559a654868940f15f11 ""
   "/usr/local/texlive/2024/texmf.cnf" 1719070383.17195 770 62e5b8f6139c022615d2c979c6c45302 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1726258674.90625 6822 05e76d40aa4c3070cb05ea043f29fede "pdflatex"
-  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1726258668.90028 50353 6ce8f592b04d0996dd24378b8e567577 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1726258674.90825 906 8a998114a12af6816ff8f4160b253bc0 "pdflatex"
-  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/fig-box1-1.pdf" 1726258661.5793 5817 07891754251f3da8c37dab8b6b7f94ea ""
-  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/fig-box2-1.pdf" 1726258661.8583 6178 291e02e6a48cb0d913d2e4ae9f41f4af ""
-  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/unnamed-chunk-6-1.pdf" 1726258662.1303 25916 adff9b1ae1d3a5d523f6ec4f2645d677 ""
-  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/unnamed-chunk-7-1.pdf" 1726258662.3693 12221 4e1ee1f0479a857846f96003ee4f4283 ""
+  "STA2005S-EDAss1-DhiyaAndKeeran.aux" 1726087557.26098 6469 2e667729fc410d9e926ac7b27afd91f5 "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran.tex" 1726087550.86506 38741 20a138bfc8bcb80b3cacb595bd6c25ec ""
+  "STA2005S-EDAss1-DhiyaAndKeeran.toc" 1726087557.26298 835 f7a5670e61947c27a6662e507af57b5a "pdflatex"
+  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/fig-box1-1.pdf" 1726087543.61615 5817 7a54df69a98499467651c7b6fb162b28 ""
+  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/fig-box2-1.pdf" 1726087543.90215 6178 b847ce82dc4e11c86ccf43e3d457632b ""
+  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/unnamed-chunk-6-1.pdf" 1726087544.18014 25916 fac5049ca5ddc6ad50c09a7a112b59a2 ""
+  "STA2005S-EDAss1-DhiyaAndKeeran_files/figure-pdf/unnamed-chunk-7-1.pdf" 1726087544.42714 12221 a00dac1713e30382db6ef0681a9777ab ""
   "knotes.sty" 1725473571.32689 12252 e9ee6a62ed234eb71b66c16aaa851545 ""
   (generated)
   "STA2005S-EDAss1-DhiyaAndKeeran.aux"
