@@ -36,19 +36,12 @@ library(psych)
 
 \newpage
 # Introduction 
-Incense sticks, or Agrabathi, have been a part of cultural and spiritual practices for centuries, especially in the Indian subcontinent. These fragrant sticks are commonly used in religious rituals, meditation, and household ceremonies, where their slow, steady burn releases aromatic smoke that permeates the air. The burning of incense is more than just a sensory experience—it holds deep cultural significance, symbolizing the connection between the physical and the spiritual realms.
+There is an old wives tale which hails from the ancient Indian subcontinent and has been told for generations; applying oil to an incense stick will cause it to burn faster. This quick burn time ensured that the smoke created a sacred atmosphere, a well scented home and most importantly, carried your family’s prayers to the almighty deities above. While there can be no doubt about the role of incense sticks (or Agrabathi) in the cultural and spiritual settings of an Indian home, doubt remained about the effectiveness of dipping these sticks into the rich, often fragranced, oils. This study seeks to unravel the truth behind this age-old belief, offering modern families the wisdom to discern whether investing in extra oils for Agrabathi truly enhances both their connection to the divine and the speed in which the fragrance emanates throughout their homes. By providing this knowledge, this study aims to empower families to make informed decisions and potentially save them from unnecessary expenses if these treatments are found not to significantly extend the burn time of incense sticks.
 
-However, despite the widespread use of incense sticks, little scientific research has been done to investigate factors that might influence their burn time. There is an abundance of varying anecdotal theories which all claim to alter the burn rate of Agrabathi, but these claim remains largely unexamined. This assignment will explore one such claim: the influence of different oils on the burn rate of Agrabathi. 
-
-# Motivation
-For generations, families across the Indian subcontinent have followed a long-held belief that applying oil to incense sticks, known as Agrabathi, causes them to burn faster. This old-wives tale, passed down through the ages, was believed to ensure that the sacred smoke swiftly filled the home with fragrance, creating an atmosphere for prayer and meditation. The faster burning time, in particular, was thought to facilitate a stronger connection with the divine, symbolizing the quick ascent of prayers to the heavens. 
-
-While the cultural and spiritual significance of incense sticks is undeniable in Indian homes, there remains a question: does applying oil to incense sticks truly accelerate burn time? This study seeks to investigate the validity of this age-old belief, providing modern families with data to determine whether applying oils such as castor and coconut oil is a meaningful practice or simply a tradition without scientific support.
-
-By scientifically evaluating the effects of applying oils to incense sticks, we aim to empower families to make informed choices about their usage, potentially saving costs on unnecessary oils if they are found to have no significant effect. This experiment not only seeks to reveal the truth behind the belief but also strives to contribute practical knowledge to everyday practices that have long been part of cultural rituals. 
+This study explores the influence of different oil treatments on the burn time of incense sticks through the application of a randomized block design (RBD).  
 
 # Objectives
-Our objective is to determine which treatment has an effect on burn time looking at three treatment: a control, castor oil, and coconut oil. We will examine whether these commonly used oils differ from each other (comparison of castor and coconut oil) and whether there is a difference with the oils from the control (comparing each oil individually to the control). By acknowledging the differences that might arise due to manufacturing or material quality, blocking for brands serves as a crucial step in isolating the true effects of the oil treatments. By structuring the experiment in this way, we aim to minimize the impact of confounding variables, allowing us to attribute any variations in burn time more confidently to the treatments themselves rather than to the intrinsic characteristics of the incense sticks. Once the incense sticks are lit and the smoke clears, the last Agrabathi stick will reveal whether oils truly influence burn time. By repeating this experiment, we ensure that our findings are as robust as the scent that lingers in the air.
+The objective of the study is to determine if the treatments have an effect on the burn time of Agrabathi. The study considers three levels to the treatment factor: a control of no oil, castor oil, and coconut oil. The study will examine whether these commonly used oils differ from each other (comparison of castor and coconut oil)  and whether there is a difference between the oils and the control (comparing the average response of the oils to the average response of the control). By blocking for the different brands of incense sticks, we can more confidently deduce the differences between treatments, as the blocks contain homogeneous units. Once the incense sticks are lit and the smoke clears, the last burning stick will reveal whether oils truly influence the burn time.
 
 Formally this study will test the following hypothesis:
 
@@ -60,7 +53,8 @@ $H_A$: The application of at least one of the oils has an effect on the burn tim
 Additionally the following two comparisons of means will be conducted:
 
 ::: {.callout-note appearance="simple"}
-$L_1$: Effect of castor oil is equal to the effect of coconut oil. 
+$L_1$: Effect of sandalwood oil is equal to the effect of coconut oil. 
+$L_1$: Effect of sandalwood oil is equal to the effect of coconut oil. 
 
 $L_2$: The effect of no oil is equal to the average effect of applying the oils
 :::
