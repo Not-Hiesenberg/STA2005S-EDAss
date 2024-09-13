@@ -54,6 +54,7 @@ Additionally the following two comparisons of means will be conducted:
 
 ::: {.callout-note appearance="simple"}
 $L_1$: Effect of sandalwood oil is equal to the effect of coconut oil. 
+$L_1$: Effect of sandalwood oil is equal to the effect of coconut oil. 
 
 $L_2$: The effect of no oil is equal to the average effect of applying the oils
 :::
@@ -247,10 +248,45 @@ homo<-as.numeric(unlist(leveneTest(time ~ treat, data=genBurn))[5]) #Test for Ho
 par(mfrow=c(1,2))
 hist(genBurn$time, main="Histogram illustrating the distribution of burn times", las=1, xlab="Burn Time")
 qqPlot(genBurn$time)
+
+shapiro.test(genBurn$time)
+
 ```
-The variability among blocks and treatments will also be further explored by means of a Levene test. This is to establish homoscedasticity of the treatment groups. The null hypothesis of this test is that the population variances between the groups is equal. The alternate hypothesis is that there is a difference in the variance of the population underlykng each treatment group. The Levene test fails to reject the null hypothesis ($p=$ `{r} round(homo,2)`). This is to say that the variance between groups is equal and the assumption of homoscedasticity is met.
 
+Interpretation of effects:
+The effects of the treatments indicate how each oil influences the burn time of the incense sticks relative to the average burn time:
+ ‘No oil’ results in a shorter burn time by 412.7 seconds compared to the baseline, suggesting that oil treatments extend the burn duration.
+ ‘Coconut oil’ increases the burn time by 166.7 seconds, indicating a moderate effect compared to the baseline.
+ ‘Castor oil’ has the largest effect, increasing the burn time by 246.1 seconds, making it the most effective treatment for extending the burn time.
+This suggests that both oils significantly increase the burn time of the incense sticks, with ‘castor oil’ being the most effective. The negative effect of ‘No oil" reinforces that the oils play a role in slowing the burn rate.
+The standard error for the treatment effect is 127.3 seconds, which gives us an idea of the precision of the estimated treatment effects. A smaller standard error would indicate more precise estimates, but in this case, a standard error of 127.3 seconds suggests some level of uncertainty in the treatment effect estimates.
+The standard error for replication is relatively small at 30 seconds, indicating that the variability within the blocks or experimental units is low. This reflects that the blocking (by brand) helped reduce some variability in the experiment.
+Given the small p value from the ANOVA, we can confidently conclude that the observed differences between treatments are statistically significant. This suggests that the treatment effects are unlikely to be due to random variation alone. Despite the moderately large standard error for the treatment effects (127.3 seconds), the small p-value indicates that the effects of the treatments, particularly castor oil, are statistically significant and not likely due to chance. Therefore, the large treatment effects are statistically meaningful.
+In summary, the effects indicate that applying oils, particularly castor oil, increases the burn time of incense sticks. The small p-value supports the statistical significance of these effects, despite the presence of some uncertainty in the precision of the estimates due to the standard error.
 
+In figure 1, there is an equal proportion of the inner quartile range both above and below the mean and the tails of the boxplots are symmetrical, these properties are evidence that the data follows a normal distribution. In a randomized block design, it's important to check if the data within each block follows a normal distribution. This helps ensure that the residuals of the ANOVA model are likely to be normally distributed, which is a key assumption for the validity of the F-tests. Non-normality may indicate potential issues like outliers or skewed data, which could violate ANOVA's assumptions and lead to inaccurate conclusions. It is visually clear from figure one that our data is normal. The whiskers on the boxplots are approximately equal across the blocks, yet slightly shorter for ‘Hem’ than ‘Malarani’ or ‘Tulasi’. Due to an approximate average length of whiskers across the blocks, we can conclude equal variances, yet a Levene test will be performed to ensure accuracy since there is some disparity within the ‘Hem’ block of this exploratory analysis. 
+A further delve into the treatments within the blocks (figure 2):
+In Block 1: 
+Treatment 1: The burn times are clustered, they have a small interquartile range (IQR) and short, symmetric tails. 
+Treatment 2: The median is approximately the same at treatment 1 (control) yet a larger variability is evident. The lower tail seems to be slightly longer than the upper tail indicating a possible left skew (even though a very small difference in tail length is present).
+Treatment 3:  From this boxplot, we can see large amounts of variability,a definite positive skew due to a longer upper tail. The median is marginally above the median for Treatment 1 & 2. The large spread suggests increased burn time under this treatment. 
+In Block 2:
+Treatment 1: There is a significantly lower median compared to other treatments in block 2. There is a positive skew due to a longer upper tail. There is a much lower median present compared to the same treatment in block 1. 
+Treatment 2: An outlier is present in this data, suggesting that we have an observation which is quite far from the rest of the data. The median is the highest in this block even though the data is grouped quite closely (smallest IQR of block 2). The entire distribution is shifted upward relative to treatment 1 in this block yet treatment 2’s lower quartile overlaps with the upper quartile of treatment 1.
+Treatment 3: High amounts of variability is present and data is potentially right skewed. 
+In Block 3: 
+Treatment 1:  Lowest median in this block and overall blocks, there is a clear left-skew due to asymmetric tail length. 
+Treatment 2: Tails are symmetric and the median appears to be in the center of the IQR, larger variability compared to Treatment 2 in the other 2 blocks (longer tails).
+Treatment 3: Highest median in block 3 with a symmetrical boxplot (central median and approximately equal tail length). 
+The overall impression of this more in-depth analysis of the boxplots does seem to indicate some inconsistencies which do not represent an accurate normal distribution with homoscedasticity. This is due to asymmetric tail lengths, non-central medians and tail lengths of treatments which are not consistent throughout blocks. While there are these indications of a stray from a normal distribution, an inspection of an interaction plot and the Shapiro Wilk normality test. These should assist us in determining whether our data is normal or not and whether this is due to a combined effect influencing our data which we did not account for. The variability among blocks and treatments will also be further explored by means of a Levene test and in our ANOVA analysis to determine whether these differences are statistically significant. 
+
+Interaction plot:
+The interaction plot reveals that the relationship between the treatment (No oil, Coconut oil, Castor oil) and burn time varies depending on the brand of incense stick (Malarani, Hem, Tulasi), indicating a potential interaction effect. For example, Malarani shows a large difference in burn times between "No oil" and "Castor oil," while Hem shows a smaller difference, suggesting the oils have less impact on burn time for Hem sticks. Tulasi exhibits moderate differences but generally has lower burn times across all treatments. The non-parallel lines in the plot confirm that the effect of the treatments differs across brands, which is indicative of an interaction. However, despite the visual evidence of interaction, the large p-value (insert p value) from the ANOVA suggests that this interaction is not statistically significant, implying that the observed differences in treatment effects across brands could be due to random variation rather than a meaningful interaction.
+
+Shapiro Wilk Normality Test:
+W = 0.98771, p-value = 0.5643
+The null hypothesis for this test would be that the data is normally distributed while the alternate hypothesis would be that the data follows a different distribution. Since our p value is quite large p>0.5, therefore we fail to reject the null hypothesis concluding the distribution is normal. 
+ 
 Above (histogram and QQplot): (Yet our Levene Test is secure so there is a homoscedasticity)
 The Q-Q plot suggests that the central portion of the burn time data follows a normal distribution reasonably well, as the points around the middle of the plot lie close to the straight line. However, there are notable deviations at both ends, with the lower tail showing lighter-than-expected behavior (fewer extreme small values) and the upper tail indicating heavier-than-expected values (more extreme large values). These deviations from the line, particularly at the tails, suggest that the data does not fully adhere to the assumption of normality. The plot shows a blue confidence band. Points falling within this band suggest acceptable deviations from normality. However, several points in the tails fall outside the band, strengthening the evidence of non-normality in the extremes.
 The histogram of burn time data appears to have a slight right skew. Most of the burn time values are concentrated between 1,500 and 3,500, with a peak frequency around 2,500. There are a few observations with higher burn times, reaching up to 4,000, which contribute to the right tail. This skewness aligns with what is seen in the Q-Q plot, where the points in the upper quantiles deviate above the line, indicating heavier tails on the right side. While the overall distribution of burn times does not seem to be drastically skewed, the deviations in the tail could suggest a slight departure from normality, as indicated by both the histogram and the Q-Q plot.
